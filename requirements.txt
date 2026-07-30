@@ -1,0 +1,17 @@
+# Python dependencies for the analysis code. Developed with Python 3.12.
+# No data or model weights are distributed; see README.
+numpy
+pandas
+scipy
+scikit-learn
+statsmodels
+lifelines
+torch
+matplotlib
+h5py
+pyarrow
+pyyaml
+joblib
+pillow
+svgpath2mpl
+actipy

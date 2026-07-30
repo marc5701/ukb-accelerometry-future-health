@@ -1,0 +1,50 @@
+# ---- Data firewall: never commit UK Biobank data or derived artifacts ----
+*.csv
+*.tsv
+*.npy
+*.npz
+*.parquet
+*.feather
+*.arrow
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.json
+*.json.gz
+*.parq
+
+# derived / run outputs
+data/
+outputs/
+output/
+runs/
+runs_cox/
+embeddings/
+embeddings_v2/
+results/
+day_mean*/
+day_distrib*/
+*.log
+
+# staging notes (not part of the release)
+_manifest/
+
+# figure / table artifacts (code only; artifacts are generated, never committed)
+*.pdf
+*.png
+*.svg
+*.eps
+*.tex
+
+# python / tooling
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.mpl_tmp/
+.venv/
+*.egg-info/
+.DS_Store
