@@ -73,6 +73,18 @@ Shared Actigraphic Risk Component, burden-adjusted false-positive analyses),
 (polygenic-risk-score comparison), `ukb_disease/investigations/`, and
 `ukb_disease/screening/` (prevalent-disease screening metrics).
 
+## System requirements
+
+- **Operating system.** The code was developed and run on Linux (64-bit). It has no
+  operating-system-specific dependencies but has only been tested on Linux.
+- **Python and packages.** Python 3.12.1, with the package versions pinned in `requirements.txt`
+  (numpy 2.2.5, pandas 2.2.3, scipy 1.15.2, scikit-learn 1.5.2, statsmodels 0.14.4, lifelines 0.30.3,
+  PyTorch 2.5.1, matplotlib 3.10.1, h5py 3.13.0, pyarrow 20.0.0, PyYAML 6.0.3, joblib 1.5.3,
+  Pillow 11.2.1, actipy 3.5.0). These are the versions used for the results in the manuscript.
+- **Hardware.** A CUDA-capable GPU is required for embedding extraction and for training the survival
+  model; pooling, evaluation, and the figure and table scripts run on CPU. No other non-standard
+  hardware is required.
+
 ## Running
 
 ```bash
@@ -86,6 +98,8 @@ python -m ukb_disease.benchmark.concordance_benchmark                    # evalu
 python figbuild/build_main.py                                            # build the main figures
 ```
 
+Installing the pinned dependencies takes a few minutes on a standard machine.
+
 The code is fully reproducible only by approved researchers within the UK Biobank Research
 Analysis Platform. Generated intermediate and output files (embeddings, per-day summaries,
 run outputs, figure data) are written under `UKB_ROOT`, may contain participant identifiers,
@@ -96,6 +110,18 @@ A few figure inputs are prepared outside this code and read at build time: Figur
 composed in external illustration software from the panel exports (`figbuild/build_fig1*.py`,
 `figbuild/export_fig1_panels_svg.py`), and a small number of descriptor and ablation summary
 tables are prepared manually.
+
+## Demo
+
+A self-contained demonstration on example data cannot be provided, because the only inputs to the
+pipeline are individual-level UK Biobank accelerometry, which cannot be shared or egressed under the
+UK Biobank Material Transfer Agreement (see [Code availability](#code-availability)). Approved UK Biobank
+researchers can run the pipeline unchanged on the identical data within the UK Biobank Research Analysis
+Platform. When run on UK Biobank data, it produces, in order, the cached per-patch and per-day
+embeddings, the per-participant predicted-hazard matrix over the outcome panel, the per-disease and
+pooled concordance tables, and the manuscript figures and tables. Run time is dominated by the embedding
+extraction over the full cohort on a GPU; the subsequent pooling, model training, and evaluation are
+comparatively fast.
 
 ## Figure and table crosswalk
 

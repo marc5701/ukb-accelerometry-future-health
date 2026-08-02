@@ -50,7 +50,7 @@ pdc = json.load(open(F.BENCH / "per_disease_c.json"))["embedding_disjoint_split"
 clin = pd.read_csv(UKB / "investigations" / "clinical_baseline" / "output" / "per_disease_3arm.csv")
 clin = clin.set_index("phecode")
 
-scr_path = F.oak_path("mdige/results/ukb_disease/screening_prevalent_v1/same_dist_cv/screening_results_primary.csv")
+scr_path = F.oak_path("screening_prevalent_v1/same_dist_cv/screening_results_primary.csv")
 scr = pd.read_csv(scr_path)
 scr_wrist = scr[scr.arm == "logistic_emb"].set_index("phecode")
 scr_demo = scr[scr.arm == "demo"].set_index("phecode")
